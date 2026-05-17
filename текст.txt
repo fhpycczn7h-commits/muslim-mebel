@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MUSLIM MEBEL | Имперская мебель</title>
+    <meta name="description" content="Эксклюзивная мебель ручной работы. Вход в мир роскоши Muslim Mebel.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700;800&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #010101; color: #ECE6D9; line-height: 1.4; scroll-behavior: smooth; }
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 56px; }
+        h1, h2, h3, .logo, .price, .product-title { font-family: 'Cormorant Garamond', serif; }
+        h2 { font-size: 3.8rem; margin-bottom: 0.75rem; position: relative; display: inline-block; font-weight: 600; color: #E6D5A8; letter-spacing: 3px; }
+        h2:after { content: ''; position: absolute; bottom: -8px; left: 0; width: 80px; height: 2px; background: linear-gradient(90deg, #E6D5A8, #A67C42, #E6D5A8); }
+        .section { padding: 80px 0; border-bottom: 1px solid rgba(230, 213, 168, 0.12); }
+        .header { background: rgba(1, 1, 1, 0.96); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(230, 213, 168, 0.5); position: sticky; top: 0; z-index: 1100; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 2.4rem; font-weight: 700; letter-spacing: 5px; background: linear-gradient(135deg, #F7EFCF, #C5A153); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 56px; list-style: none; }
+        .nav-links a { text-decoration: none; font-weight: 300; color: #ECE6D9; transition: 0.3s; font-size: 0.85rem; letter-spacing: 2.5px; text-transform: uppercase; }
+        .nav-links a:hover { color: #E6D5A8; }
+        .search-area { display: flex; align-items: center; gap: 12px; background: #1c1c1c; padding: 6px 16px; border-radius: 40px; border: 1px solid rgba(230,213,168,0.3); }
+        .search-area input { background: transparent; border: none; color: #ECE6D9; padding: 8px 0; outline: none; width: 180px; font-size: 0.85rem; }
+        .search-area button { background: none; border: none; color: #E6D5A8; cursor: pointer; font-size: 1rem; }
+        .cart-icon, .wishlist-icon { position: relative; cursor: pointer; font-size: 1.5rem; color: #E6D5A8; }
+        .cart-count { position: absolute; top: -12px; right: -18px; background: #E6D5A8; color: #010101; border-radius: 50%; width: 22px; height: 22px; font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        .mobile-menu-btn { display: none; font-size: 1.8rem; background: none; border: none; color: #E6D5A8; cursor: pointer; }
+        .btn { background: transparent; border: 1.5px solid #E6D5A8; color: #E6D5A8; padding: 12px 36px; border-radius: 0px; font-weight: 500; letter-spacing: 3px; transition: 0.3s; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; display: inline-block; text-decoration: none; }
+        .btn-primary { background: #E6D5A8; color: #010101; border: none; }
+        .btn-primary:hover { background: #C5A153; transform: translateY(-2px); }
+        .hero { min-height: 85vh; background: radial-gradient(ellipse at 60% 40%, #1F1A10, #010101); display: flex; align-items: center; }
+        .hero-title { font-size: 5.5rem; font-weight: 700; line-height: 1.05; margin-bottom: 0.5rem; }
+        .hero-title span { color: #E6D5A8; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 48px; margin-top: 48px; }
+        .product-card { background: #0B0B0B; transition: 0.4s; border: 1px solid rgba(230, 213, 168, 0.2); position: relative; }
+        .product-card:hover { transform: translateY(-8px); border-color: #E6D5A8; }
+        .product-img { height: 280px; background: #14100C; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #2C241A; overflow: hidden; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
+        .product-info { padding: 28px 24px 32px; }
+        .product-title { font-size: 1.8rem; font-weight: 600; margin-bottom: 6px; }
+        .price { font-size: 2rem; color: #E6D5A8; margin: 12px 0; }
+        .specs { font-size: 0.8rem; color: #B7AA8A; border-top: 1px solid #2C241A; padding-top: 14px; margin-top: 8px; }
+        .cart-btn, .wishlist-btn { width: 48%; margin-top: 20px; background: transparent; border: 1px solid #E6D5A8; color: #E6D5A8; padding: 10px; cursor: pointer; display: inline-block; text-align: center; }
+        .cart-modal, .admin-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.97); z-index: 1200; justify-content: center; align-items: center; }
+        .cart-modal-content, .admin-modal-content { background: #0A0A0A; max-width: 700px; width: 90%; border: 1px solid #E6D5A8; padding: 40px; max-height: 80vh; overflow-y: auto; }
+        .filter-bar { display: flex; gap: 20px; margin: 20px 0; flex-wrap: wrap; align-items: center; }
+        .filter-bar select, .filter-bar input { background: #1c1c1c; border: 1px solid #3E3524; padding: 8px 12px; color: #ECE6D9; border-radius: 30px; }
+        .admin-product-item { border-bottom: 1px solid #3E3524; padding: 12px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: white; z-index: 99; }
+        input, textarea, select { background: #121212; border: 1px solid #3E3524; color: #ECE6D9; padding: 12px 14px; width: 100%; font-family: 'Montserrat', sans-serif; border-radius: 8px; }
+        @media (max-width: 860px) { .container { padding: 0 24px; } .nav-links { display: none; flex-direction: column; width: 100%; background: #010101; padding: 28px; gap: 28px; } .nav-links.active { display: flex; } .mobile-menu-btn { display: block; } h2 { font-size: 2.4rem; } .hero-title { font-size: 3rem; } }
+        footer { background: #010101; padding: 48px 0 32px; border-top: 1px solid rgba(230, 213, 168, 0.2); text-align: center; }
+        .entrance-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 30% 20%, #0a0a0a, #000000); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; transition: opacity 1.8s cubic-bezier(0.19, 1, 0.22, 1); opacity: 1; }
+        .entrance-screen.fade-out { opacity: 0; pointer-events: none; }
+        .luxury-logo { text-align: center; animation: floatGlow 2s ease-out; }
+        .luxury-logo h1 { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 600; letter-spacing: 8px; background: linear-gradient(135deg, #F7EFCF 0%, #D4AF7A 45%, #C5A153 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .loading-dots { margin-top: 48px; display: flex; gap: 12px; justify-content: center; }
+        .loading-dots span { width: 10px; height: 10px; background: #D4AF7A; border-radius: 50%; display: inline-block; animation: pulse 1.4s infinite ease-in-out both; }
+        @keyframes pulse { 0%,80%,100% { transform: scale(0.4); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; background: #E6D5A8; } }
+        .main-site { opacity: 0; visibility: hidden; transition: opacity 1.2s ease 0.3s; }
+        .main-site.visible { opacity: 1; visibility: visible; }
+        .wishlist-active { color: #ff6b6b; }
+    </style>
+</head>
+<body>
+<div class="whatsapp-float"><a href="https://wa.me/79285106565" target="_blank" style="color: white;"><i class="fab fa-whatsapp"></i></a></div>
+<div id="entranceScreen" class="entrance-screen"><div class="luxury-logo"><h1>MUSLIM MEBEL</h1><div class="loading-dots"><span></span><span></span><span></span></div><p style="margin-top: 20px;">ВХОД В МИР РОСКОШИ</p></div></div>
+
+<div id="mainSite" class="main-site">
+    <header class="header"><div class="container"><div class="navbar"><div class="logo">MUSLIM MEBEL</div><button class="mobile-menu-btn" id="menuToggle"><i class="fas fa-gem"></i></button>
+        <ul class="nav-links" id="navLinks"><li><a href="#home">АТЕЛЬЕ</a></li><li><a href="#catalog">КОЛЛЕКЦИИ</a></li><li><a href="#reviews">ОТЗЫВЫ</a></li><li><a href="#contacts">САЛОНЫ</a></li></ul>
+        <div style="display: flex; align-items: center; gap: 20px;"><div class="search-area"><input type="text" id="searchInput" placeholder="Поиск мебели..."><button id="searchBtn"><i class="fas fa-search"></i></button></div>
+        <div class="wishlist-icon" id="wishlistIcon"><i class="far fa-heart"></i></div>
+        <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div></div>
+    </div></div></header>
+    <main>
+        <section id="home" class="hero"><div class="container"><div><h1 class="hero-title">MUSLIM <span>MEBEL</span><br>ИМПЕРАТОРСКАЯ МЕБЕЛЬ</h1><p style="font-size: 1rem; max-width: 550px; margin: 24px 0 32px;">Эксклюзивные изделия ручной работы. Белая доставка по миру.</p><a href="#catalog" class="btn btn-primary">Изучить коллекции</a></div></div></section>
+        <section id="catalog" class="section"><div class="container"><h2>ЛЕГЕНДАРНЫЕ МОДЕЛИ</h2><div class="filter-bar"><input type="number" id="priceMin" placeholder="Цена от"><input type="number" id="priceMax" placeholder="Цена до"><select id="materialFilter"><option value="">Все материалы</option><option value="кожа">Натуральная кожа</option><option value="бархат">Бархат</option><option value="массив">Массив дуба</option></select><button id="applyFilter" class="btn">Применить</button></div><div class="products-grid" id="productsGrid"></div><div style="text-align: center; margin-top: 60px;"><a href="https://instagram.com/muslim_mebel" target="_blank" class="btn">Полный каталог в Instagram <i class="fab fa-instagram"></i></a></div></div></section>
+        <section id="reviews" class="section" style="background: #040404;"><div class="container"><h2>ВОСТОРГИ ЦЕНИТЕЛЕЙ</h2><div class="reviews-wrap" style="display:flex; gap:48px; flex-wrap:wrap;"><div class="review-card" style="flex:1; background:#0A0A0A; padding:32px;"><h3>Оставить отзыв</h3><input type="text" id="reviewName" placeholder="Ваше имя"><div id="ratingStars" style="margin:16px 0; display:flex; gap:10px;"></div><textarea id="reviewText" rows="3"></textarea><button id="sendReviewBtn" class="btn btn-primary">Отправить</button></div><div class="review-card" style="flex:2; background:#0A0A0A; padding:32px;"><h3><i class="fas fa-star"></i> ОТЗЫВЫ</h3><div id="reviewsList"></div></div></div></div></section>
+        <section id="contacts" class="section"><div class="container"><h2>САЛОНЫ</h2><div style="margin:40px 0;"><div style="background:#0A0A0A; padding:24px; margin-bottom:16px;">📍 ул. Ибрагимова, 45 — Флагман</div><div style="background:#0A0A0A; padding:24px; margin-bottom:16px;">📍 проспект Дружбы, 17Б — Галерея</div><div style="background:#0A0A0A; padding:24px;">📍 ул. Грозненская, 8 — Privé</div></div><div style="display:flex; flex-wrap:wrap; gap:20px;"><span>📞 +7 (928) 510-65-65</span><span>📞 +7 (928) 488-60-60</span><span>⏰ 9:00–18:00 (пт выходной)</span></div></div></section>
+    </main>
+    <footer><div class="container"><p>© 2025 MUSLIM MEBEL — МЕЖДУНАРОДНОЕ АТЕЛЬЕ</p></div></footer>
+    <div id="cartModal" class="cart-modal"><div class="cart-modal-content"><span class="close-modal" id="closeModal" style="float:right; font-size:2rem; cursor:pointer;">&times;</span><h2>КОРЗИНА</h2><div id="cartItemsList"></div><div id="cartTotal"></div><button id="checkoutBtn" class="btn btn-primary">Оплатить</button></div></div>
+    <div id="adminModal" class="admin-modal"><div class="admin-modal-content"><span class="close-admin" id="closeAdminBtn" style="float:right; font-size:2rem; cursor:pointer;">&times;</span><h2>👑 Админ-панель</h2><div id="adminLoginBlock"><input type="password" id="adminPass" placeholder="Пароль"><button id="loginAdminBtn" class="btn">Войти</button><p>Пароль: admin123</p></div>
+    <div id="adminPanelContent" style="display:none;">
+        <h3>Товары</h3><button id="addProductBtn" class="btn">+ Товар</button><div id="adminProductsList"></div><hr>
+        <h3>Промокоды</h3><div><input type="text" id="promoCodeName" placeholder="Код"><input type="number" id="promoDiscount" placeholder="Скидка %"><button id="addPromoBtn">Добавить</button></div><div id="promoList"></div><hr>
+        <h3>Настройки Telegram</h3><input type="text" id="telegramToken" placeholder="Токен бота"><input type="text" id="telegramChatId" placeholder="Chat ID"><button id="saveTelegramBtn">Сохранить</button><p id="telegramStatus"></p><hr>
+        <h3>Заказы</h3><button id="exportOrdersExcel">📎 Экспорт Excel</button><button id="exportOrdersPDF">📄 Экспорт PDF</button><div id="ordersListAdmin"></div><hr>
+        <h3>Отзывы</h3><div id="reviewsListAdmin"></div><hr>
+        <h3>Хостинг и домен</h3><p>📌 Инструкция: загрузите файлы на любой хостинг (Beget, Timeweb, Reg.ru). Привяжите домен к папке public_html. Готово!</p><button id="domainHelpBtn">Подробнее</button>
+        <button id="logoutAdminBtn" class="btn" style="margin-top:20px;">Выйти</button>
+    </div></div></div>
+</div>
+
+<script>
+    // 05.ru вход
+    window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('entranceScreen').classList.add('fade-out');document.getElementById('mainSite').classList.add('visible');setTimeout(()=>{document.getElementById('entranceScreen').style.display='none';},1900);},2500);});
+    
+    // ========== ДАННЫЕ ==========
+    let products = JSON.parse(localStorage.getItem('muslim_products')) || [
+        { id:1, name:"Диван «Султан»", price:134900, dimensions:"210x95x85 см", material:"Натуральная кожа, массив дуба", weight:"85 кг", icon:"🛋️", imageData:null, seo_title:"Купить диван Султан", seo_desc:"Роскошный диван из натуральной кожи" },
+        { id:2, name:"Кровать «Император»", price:218000, dimensions:"200x180x120 см", material:"Бархат, резные элементы", weight:"110 кг", icon:"🛌", imageData:null, seo_title:"Кровать Император", seo_desc:"Эксклюзивная кровать ручной работы" },
+        { id:3, name:"Шкаф «Амира»", price:289000, dimensions:"250x60x220 см", material:"Зеркала, LED", weight:"190 кг", icon:"🚪", imageData:null, seo_title:"Шкаф Амира", seo_desc:"Вместительный шкаф-купе с подсветкой" },
+        { id:4, name:"Обеденная группа «Форсаж»", price:179500, dimensions:"Стол 180x90 см", material:"Лакированный массив", weight:"120 кг", icon:"🍷", imageData:null },
+        { id:5, name:"Кухня «Золотая осень»", price:427000, dimensions:"Индивидуальные размеры", material:"МДФ премиум", weight:"320 кг", icon:"🍳", imageData:null }
+    ];
+    let reviews = JSON.parse(localStorage.getItem('muslim_reviews')) || [];
+    let orders = JSON.parse(localStorage.getItem('muslim_orders')) || [];
+    let promocodes = JSON.parse(localStorage.getItem('muslim_promos')) || [{code:"SALE10", discount:10}];
+    let wishlist = JSON.parse(localStorage.getItem('muslim_wishlist')) || [];
+    let cart = JSON.parse(localStorage.getItem('muslim_cart')) || [];
+    let telegramSettings = JSON.parse(localStorage.getItem('telegram_settings')) || { token: "", chatId: "" };
+    
+    function saveAll(){ 
+        localStorage.setItem('muslim_products',JSON.stringify(products)); 
+        localStorage.setItem('muslim_reviews',JSON.stringify(reviews)); 
+        localStorage.setItem('muslim_orders',JSON.stringify(orders)); 
+        localStorage.setItem('muslim_promos',JSON.stringify(promocodes)); 
+        localStorage.setItem('muslim_wishlist',JSON.stringify(wishlist)); 
+        localStorage.setItem('muslim_cart',JSON.stringify(cart)); 
+        localStorage.setItem('telegram_settings',JSON.stringify(telegramSettings));
+        renderCatalog(); renderCart(); renderAdmin(); if(adminLogged){ renderAdminProducts(); renderAdminOrders(); renderAdminReviews(); renderPromoList(); } 
+    }
+    
+    // Корзина
+    function renderCart(){ 
+        document.getElementById('cartCount').innerText=cart.reduce((s,i)=>s+i.quantity,0); 
+        let container=document.getElementById('cartItemsList'), totalSpan=document.getElementById('cartTotal'); 
+        if(cart.length===0){ container.innerHTML='<p>Пусто</p>'; totalSpan.innerHTML=''; return; } 
+        let html='', total=0; 
+        cart.forEach((item,idx)=>{ let sum=item.price*item.quantity; total+=sum; html+=`<div><strong>${item.name}</strong> x${item.quantity} = ${sum.toLocaleString()} ₽ <button class="remove-item" data-idx="${idx}">❌</button></div>`; }); 
+        container.innerHTML=html; totalSpan.innerHTML=`ИТОГО: ${total.toLocaleString()} ₽`; 
+        document.querySelectorAll('.remove-item').forEach(btn=>btn.addEventListener('click',()=>{ cart.splice(parseInt(btn.dataset.idx),1); saveAll(); renderCart(); })); 
+    }
+    function addToCart(product){ let ex=cart.find(i=>i.id===product.id); if(ex) ex.quantity++; else cart.push({...product, quantity:1}); saveAll(); alert(`✓ ${product.name} добавлен`); }
+    
+    // Wishlist
+    function toggleWishlist(product){ let idx=wishlist.findIndex(i=>i.id===product.id); if(idx===-1) wishlist.push(product); else wishlist.splice(idx,1); saveAll(); renderCatalog(); }
+    
+    // Фильтр и поиск
+    let currentFilter={ name:'', minPrice:0, maxPrice:Infinity, material:'' };
+    function renderCatalog(){ 
+        let grid=document.getElementById('productsGrid'); if(!grid) return; 
+        let filtered=products.filter(p=>p.name.toLowerCase().includes(currentFilter.name.toLowerCase()) && p.price>=currentFilter.minPrice && p.price<=currentFilter.maxPrice && (currentFilter.material==='' || p.material.toLowerCase().includes(currentFilter.material.toLowerCase()))); 
+        grid.innerHTML=''; 
+        filtered.forEach(p=>{ let isWish=wishlist.some(w=>w.id===p.id); let imgHtml=p.imageData?`<img src="${p.imageData}">`:`<span style="font-size:5rem;">${p.icon}</span>`; 
+        grid.innerHTML+=`<div class="product-card"><div class="product-img">${imgHtml}</div><div class="product-info"><div class="product-title">${p.name}</div><div class="price">${p.price.toLocaleString()} ₽</div><div class="specs">${p.dimensions}<br>${p.material}</div><div><button class="cart-btn" data-id="${p.id}">🛒 В корзину</button><button class="wishlist-btn" data-id="${p.id}">${isWish?'❤️ В избранном':'🤍 В избранное'}</button></div></div></div>`; });
+        document.querySelectorAll('.cart-btn').forEach(btn=>btn.addEventListener('click',()=>{ let prod=products.find(p=>p.id===parseInt(btn.dataset.id)); if(prod) addToCart(prod); }));
+        document.querySelectorAll('.wishlist-btn').forEach(btn=>btn.addEventListener('click',()=>{ let prod=products.find(p=>p.id===parseInt(btn.dataset.id)); if(prod) toggleWishlist(prod); }));
+    }
+    document.getElementById('applyFilter')?.addEventListener('click',()=>{ currentFilter.minPrice=parseInt(document.getElementById('priceMin').value)||0; currentFilter.maxPrice=parseInt(document.getElementById('priceMax').value)||Infinity; currentFilter.material=document.getElementById('materialFilter').value; renderCatalog(); });
+    document.getElementById('searchBtn').onclick=()=>{ let q=document.getElementById('searchInput').value.trim(); if(q==='Muslim_Mebel'){ document.getElementById('adminModal').style.display='flex'; document.getElementById('searchInput').value=''; return; } currentFilter.name=q; renderCatalog(); };
+    
+    // Отзывы
+    let selectedRating=null;
+    function renderRatingButtons(){ let div=document.getElementById('ratingStars'); if(!div) return; div.innerHTML=''; for(let i=1;i<=10;i++){ let btn=document.createElement('button'); btn.innerText=i; btn.style.margin='4px'; btn.onclick=()=>{ selectedRating=i; document.querySelectorAll('#ratingStars button').forEach(b=>b.style.background=''); btn.style.background='#E6D5A8'; btn.style.color='black'; }; div.appendChild(btn); } }
+    function renderReviewsList(){ let container=document.getElementById('reviewsList'); if(!container) return; container.innerHTML=''; reviews.slice().reverse().forEach(r=>{ container.innerHTML+=`<div><strong>${r.name}</strong> (${r.rating}/10)<p>${r.comment}</p><small>${r.date}</small></div><hr>`; }); }
+    document.getElementById('sendReviewBtn')?.addEventListener('click',()=>{ let name=document.getElementById('reviewName').value.trim(); let comment=document.getElementById('reviewText').value.trim(); if(!name||!selectedRating||!comment){ alert("Заполните всё"); return; } reviews.push({name,rating:selectedRating,comment,date:new Date().toLocaleString()}); saveAll(); renderReviewsList(); document.getElementById('reviewName').value=''; document.getElementById('reviewText').value=''; selectedRating=null; alert("Спасибо!"); });
+    
+    // Онлайн-оплата + промокоды
+    document.getElementById('checkoutBtn').onclick=()=>{ if(cart.length===0){ alert("Корзина пуста"); return; } let name=prompt("Имя"); let phone=prompt("Телефон"); let address=prompt("Адрес"); let promo=prompt("Промокод (если есть)"); let total=cart.reduce((s,i)=>s+i.price*i.quantity,0); let disc=0; if(promo){ let p=promocodes.find(pc=>pc.code===promo); if(p) disc=p.discount; } let final=total*(1-disc/100); alert(`Демо-оплата: к оплате ${final.toLocaleString()} ₽\n(в реальности подключите ЮKassa)`); let newOrder={id:Date.now(),name,phone,address,items:[...cart],total:final,date:new Date().toLocaleString()}; orders.unshift(newOrder); saveAll(); sendTelegram(`🆕 НОВЫЙ ЗАКАЗ от ${name} на сумму ${final.toLocaleString()} ₽`); cart=[]; saveAll(); document.getElementById('cartModal').style.display='none'; alert("Заказ принят!"); };
+    
+    // Telegram уведомления
+    function sendTelegram(message){ if(telegramSettings.token && telegramSettings.chatId){ fetch(`https://api.telegram.org/bot${telegramSettings.token}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:telegramSettings.chatId,text:message})}).catch(e=>console.log(e)); console.log("Уведомление отправлено"); } else { console.log("Telegram не настроен"); alert("Уведомление: "+message); } }
+    document.getElementById('saveTelegramBtn')?.addEventListener('click',()=>{ telegramSettings.token=document.getElementById('telegramToken').value; telegramSettings.chatId=document.getElementById('telegramChatId').value; saveAll(); alert("Настройки сохранены"); });
+    
+    // Экспорт заказов
+    function exportOrders(format){ if(orders.length===0){ alert("Нет заказов"); return; } let data=[["Дата","Клиент","Телефон","Адрес","Сумма"]]; orders.forEach(o=>{ data.push([o.date,o.name,o.phone,o.address,o.total.toLocaleString()]); }); let csv=data.map(row=>row.join(',')).join('\n'); let blob=new Blob([csv],{type:'text/csv'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`orders.${format==='csv'?'csv':'csv'}`; a.click(); if(format==='pdf') alert("PDF сгенерирован как CSV (для PDF нужна библиотека)"); }
+    document.getElementById('exportOrdersExcel')?.addEventListener('click',()=>exportOrders('csv'));
+    document.getElementById('exportOrdersPDF')?.addEventListener('click',()=>exportOrders('pdf'));
+    
+    // Админка
+    let adminLogged=false;
+    function renderAdminProducts(){ let container=document.getElementById('adminProductsList'); if(!container) return; container.innerHTML=''; products.forEach((p,idx)=>{ container.innerHTML+=`<div class="admin-product-item"><div><strong>${p.name}</strong> — ${p.price.toLocaleString()} ₽<br><small>SEO: ${p.seo_title||''}</small></div><div><button class="edit-product-photo" data-idx="${idx}">📷 Фото</button><button class="edit-product" data-idx="${idx}">✏️</button><button class="edit-seo" data-idx="${idx}">🔍 SEO</button><button class="delete-product" data-idx="${idx}">🗑️</button></div></div>`; });
+        document.querySelectorAll('.edit-product-photo').forEach(btn=>btn.addEventListener('click',()=>{ let idx=parseInt(btn.dataset.idx); let inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.onchange=e=>{ let file=e.target.files[0]; if(file){ let reader=new FileReader(); reader.onload=ev=>{ products[idx].imageData=ev.target.result; saveAll(); }; reader.readAsDataURL(file); } }; inp.click(); }));
+        document.querySelectorAll('.edit-product').forEach(btn=>btn.addEventListener('click',()=>{ let idx=parseInt(btn.dataset.idx); let p=products[idx]; let newName=prompt("Название",p.name); if(newName) p.name=newName; let newPrice=parseInt(prompt("Цена",p.price)); if(!isNaN(newPrice)) p.price=newPrice; let newDim=prompt("Размеры",p.dimensions); if(newDim) p.dimensions=newDim; saveAll(); }));
+        document.querySelectorAll('.edit-seo').forEach(btn=>btn.addEventListener('click',()=>{ let idx=parseInt(btn.dataset.idx); let p=products[idx]; let title=prompt("SEO заголовок",p.seo_title||p.name); if(title) p.seo_title=title; let desc=prompt("SEO описание",p.seo_desc||""); if(desc) p.seo_desc=desc; saveAll(); alert("SEO обновлено"); }));
+        document.querySelectorAll('.delete-product').forEach(btn=>btn.addEventListener('click',()=>{ let idx=parseInt(btn.dataset.idx); if(confirm("Удалить?")){ products.splice(idx,1); saveAll(); } }));
+    }
+    function renderAdminOrders(){ let container=document.getElementById('ordersListAdmin'); if(!container) return; container.innerHTML=''; orders.forEach((o,idx)=>{ container.innerHTML+=`<div>${o.date} | ${o.name} | ${o.phone} | ${o.total.toLocaleString()} ₽ <button class="delete-order" data-idx="${idx}">❌</button></div>`; });
+        document.querySelectorAll('.delete-order').forEach(btn=>btn.addEventListener('click',()=>{ let idx=parseInt(btn.dataset.idx); orders.splice(idx,1); saveAll(); }));
+    }
+    function renderAdminReviews(){ let container=document.getElementById('reviewsListAdmin'); if(!container) return; container.innerHTML=''; reviews.forEach((r,idx)=>{ container.innerHTML+=`<div>${r.name} (${r.rating}/10): ${r.comment} <button class="delete-review" data-idx="${idx}">❌</button></div>`; });
+        document.querySelectorAll('.delete-review').forEach(btn=>btn.addEventListener('click',()=>{ let idx=parseInt(btn.dataset.idx); reviews.splice(idx,1); saveAll(); }));
+    }
+    function renderPromoList(){ let container=document.getElementById('promoList'); if(!container) return; container.innerHTML=''; promocodes.forEach((p,idx)=>{ container.innerHTML+=`<div>${p.code} — скидка ${p.discount}% <button class="delete-promo" data-idx="${idx}">❌</button></div>`; });
+        document.querySelectorAll('.delete-promo').forEach(btn=>btn.addEventListener('click',()=>{ let idx=parseInt(btn.dataset.idx); promocodes.splice(idx,1); saveAll(); }));
+    }
+    document.getElementById('addPromoBtn')?.addEventListener('click',()=>{ let code=document.getElementById('promoCodeName').value.trim(); let disc=parseInt(document.getElementById('promoDiscount').value); if(code && disc){ promocodes.push({code,discount:disc}); saveAll(); document.getElementById('promoCodeName').value=''; document.getElementById('promoDiscount').value=''; } });
+    document.getElementById('addProductBtn')?.addEventListener('click',()=>{ let name=prompt("Название товара"); if(!name) return; let price=parseInt(prompt("Цена")); products.push({id:Date.now(),name,price:price||50000,dimensions:"стандарт",material:"Премиум",icon:"🪑",imageData:null}); saveAll(); });
+    document.getElementById('loginAdminBtn')?.addEventListener('click',()=>{ let pass=document.getElementById('adminPass').value; if(pass==='admin123'){ adminLogged=true; document.getElementById('adminLoginBlock').style.display='none'; document.getElementById('adminPanelContent').style.display='block'; renderAdminProducts(); renderAdminOrders(); renderAdminReviews(); renderPromoList(); document.getElementById('telegramToken').value=telegramSettings.token||''; document.getElementById('telegramChatId').value=telegramSettings.chatId||''; } else alert("Неверный пароль"); });
+    document.getElementById('logoutAdminBtn')?.addEventListener('click',()=>{ adminLogged=false; document.getElementById('adminLoginBlock').style.display='block'; document.getElementById('adminPanelContent').style.display='none'; });
+    document.getElementById('domainHelpBtn')?.addEventListener('click',()=>{ alert("Инструкция:\n1. Купите домен (например, muslimmebel.ru)\n2. Купите хостинг (Beget/Timeweb/Reg.ru)\n3. Загрузите все файлы сайта в папку public_html\n4. Привяжите домен к хостингу\n5. Готово! Сайт работает."); });
+    
+    // Модалки
+    let cartModal=document.getElementById('cartModal'), adminModal=document.getElementById('adminModal');
+    document.getElementById('cartIcon').onclick=()=>cartModal.style.display='flex';
+    document.getElementById('closeModal').onclick=()=>cartModal.style.display='none';
+    document.getElementById('closeAdminBtn').onclick=()=>adminModal.style.display='none';
+    window.onclick=(e)=>{ if(e.target===cartModal) cartModal.style.display='none'; if(e.target===adminModal) adminModal.style.display='none'; };
+    document.getElementById('wishlistIcon').onclick=()=>{ if(wishlist.length===0) alert("Избранное пусто"); else alert("Ваши избранные товары:\n"+wishlist.map(i=>i.name).join('\n')); };
+    document.getElementById('menuToggle').onclick=()=>document.getElementById('navLinks').classList.toggle('active');
+    
+    // Запуск
+    renderCatalog(); renderReviewsList(); renderRatingButtons(); renderCart(); saveAll();
+</script>
+</body>
+</html>
